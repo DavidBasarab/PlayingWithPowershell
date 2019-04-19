@@ -12,4 +12,20 @@ Describe "Get-TextFileNames" {
 
         Get-TextFileNames | Should Be "a812e023.txt"
     }
+
+    It "should only return txt files" {
+        Mock Get-ChildItem {
+            [PSCustomObject]@{
+                Name = "a812e023.txt"
+            },
+            [PSCustomObject]@{
+                Name = "anotherFile.txt"
+            },
+            [PSCustomObject]@{
+                Name = "ADocFile.doc"
+            }
+        }
+
+        Get-TextFileNames | Should Be ("a812e023.txt", "anotherFile.txt")
+    }
 }
