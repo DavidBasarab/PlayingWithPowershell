@@ -3,7 +3,7 @@ $sut = (Split-Path -Leaf $MyInvocation.MyCommand.Path) -replace '\.Tests\.', '.'
 . "$here\$sut"
 
 Describe "HelloWorld" {
-    It "does something useful" {
-        $true | Should -Be $false
+    It "returns a canonical phrase" {
+        HelloWorld | Should Be "Hello from Pester"
     }
 }
