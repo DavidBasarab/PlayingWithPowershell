@@ -3,7 +3,13 @@ $sut = (Split-Path -Leaf $MyInvocation.MyCommand.Path) -replace '\.Tests\.', '.'
 . "$here\$sut"
 
 Describe "Get-TextFileNames" {
-    It "does something useful" {
-        $true | Should -Be $true
+    It "returns one text file" {
+        Mock Get-ChildItem {
+            [PSCustomObject]@{
+                Name = "a812e023.txt"
+            }
+        }
+
+        Get-TextFileNames | Should Be "a812e023.txt"
     }
 }
