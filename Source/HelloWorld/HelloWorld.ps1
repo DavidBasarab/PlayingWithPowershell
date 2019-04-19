@@ -1,3 +1,7 @@
 ﻿function HelloWorld {
-    "Hello from Pester"
+    param(
+        [string]$Name = "Pester"
+    )
+
+    "Hello from $Name"
 }
